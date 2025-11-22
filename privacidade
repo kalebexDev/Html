@@ -1,0 +1,110 @@
+<!-- privacidade.html -->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ViralCine — Política de Privacidade</title>
+  <style>
+    :root{--bg:#071127;--card:#071627;--accent:#00d1b2;--muted:#9fb4c9;--pad:18px;--radius:14px}
+    *{box-sizing:border-box}
+    body{margin:0;padding:28px;background:linear-gradient(180deg,#031022,#071627);font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#e9f5ff}
+    .wrap{max-width:920px;margin:0 auto}
+    header{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#66e0c6);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:26px;color:#012b24}
+    h1{margin:0;font-size:20px}
+    p.lead{color:var(--muted);margin-top:6px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:var(--pad); border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+    .flex{display:flex;gap:12px;align-items:center}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+    .box{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px}
+    .small{color:var(--muted);font-size:13px}
+    .actions{display:flex;gap:8px;margin-top:12px}
+    .btn{background:var(--accent);border:none;padding:10px 14px;border-radius:10px;color:#022926;cursor:pointer;font-weight:700}
+    a.inline{color:#bfe3ff}
+    footer{margin-top:14px;color:var(--muted);font-size:13px}
+    @media (max-width:700px){.grid{grid-template-columns:1fr}.wrap{padding:0 12px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">VC</div>
+      <div>
+        <h1>Política de Privacidade — ViralCine 🔐</h1>
+        <p class="lead">Aqui explicamos como coletamos, usamos e protegemos seus dados.</p>
+        <div class="small">Última atualização: <strong id="updated-privacy">22/11/2025</strong></div>
+      </div>
+    </header>
+
+    <div class="card">
+      <section class="grid">
+        <div class="box">
+          <h3>1. Informações que coletamos</h3>
+          <ul>
+            <li>Nome, e-mail e foto de perfil</li>
+            <li>Conteúdo que você publica (recomendações, comentários)</li>
+            <li>Dados técnicos (modelo do aparelho, versão do app)</li>
+            <li>Identificadores do serviço de autenticação (ex.: Firebase)</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h3>2. Como usamos</h3>
+          <ul>
+            <li>Gerenciar sua conta e preferências</li>
+            <li>Melhorar o app e identificar erros</li>
+            <li>Mostrar recomendações e conectar usuários</li>
+          </ul>
+        </div>
+      </section>
+
+      <section style="margin-top:12px">
+        <div class="box">
+          <h3>3. Compartilhamento</h3>
+          <p class="small">Não vendemos seus dados. Podemos compartilhar com provedores que ajudam a rodar o app (ex.: Firebase), ou quando exigido por lei.</p>
+        </div>
+
+        <div class="box" style="margin-top:10px">
+          <h3>4. Segurança</h3>
+          <p class="small">Adotamos medidas técnicas e administrativas para proteger seus dados. Apesar disso, nenhum sistema é totalmente à prova de falhas.</p>
+        </div>
+      </section>
+
+      <section style="margin-top:12px">
+        <div class="box">
+          <h3>5. Direitos</h3>
+          <p class="small">Você pode solicitar acesso, correção ou exclusão dos seus dados. Para isso, contate suporte@viralcine.app</p>
+        </div>
+
+        <div class="box" style="margin-top:10px">
+          <h3>6. Menores</h3>
+          <p class="small">O app não é destinado a menores sem consentimento dos pais ou responsáveis. Dados identificados como coletados sem autorização serão removidos.</p>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button class="btn" id="acceptPrivacy">Entendi</button>
+        <button class="btn" id="downloadPrivacy">Baixar (.txt)</button>
+      </div>
+
+      <footer>
+        <p class="small">Contato: suporte@viralcine.app · <a class="inline" href="termos.html">Termos de Uso</a></p>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('acceptPrivacy').addEventListener('click',()=>{
+      alert('Privacidade reconhecida. Obrigado por confiar no ViralCine 🔐');
+    });
+
+    document.getElementById('downloadPrivacy').addEventListener('click',()=>{
+      const parts = Array.from(document.querySelectorAll('.box')).map(b=>b.querySelector('h3').innerText + '\n' + b.innerText.replace(b.querySelector('h3').innerText,'').trim() + '\n\n').join('');
+      const blob = new Blob([parts],{type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'privacidade_viralcine.txt'; a.click(); URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
